@@ -10,45 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_11_205610) do
+ActiveRecord::Schema.define(version: 0) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "answers", force: :cascade do |t|
-    t.bigint "question_id"
-    t.bigint "completion_id"
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["completion_id"], name: "index_answers_on_completion_id"
-    t.index ["question_id"], name: "index_answers_on_question_id"
-  end
-
-  create_table "completions", force: :cascade do |t|
-    t.bigint "questionnaire_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["questionnaire_id"], name: "index_completions_on_questionnaire_id"
-  end
-
-  create_table "questionnaires", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "questions", force: :cascade do |t|
-    t.bigint "questionnaire_id"
-    t.string "name"
-    t.integer "question_type"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["questionnaire_id"], name: "index_questions_on_questionnaire_id"
-  end
-
-  add_foreign_key "answers", "completions"
-  add_foreign_key "answers", "questions"
-  add_foreign_key "completions", "questionnaires"
-  add_foreign_key "questions", "questionnaires"
 end

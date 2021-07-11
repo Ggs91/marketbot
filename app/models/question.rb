@@ -1,4 +1,6 @@
 class Question < ApplicationRecord
+  has_one :chat_message, as: :sendable
+  has_one :chat_room, through: :chat_messages
   belongs_to :questionnaire
   has_many :answers, dependent: :destroy
   accepts_nested_attributes_for :answers, allow_destroy: true
