@@ -1,0 +1,13 @@
+<%= link_to 'Start a survey', chatrooms_path, method: :post %>
+<h5>Or</h5>
+<%= link_to 'Create a questionnaire', new_questionnaire_path %>
+
+<br>
+<ul>
+  <% @chatrooms.each do |chatroom| %>
+  <li>
+    <%= link_to "Continue survey in #{chatroom.name}", questionnaire_path(chatroom.id) %>
+  </li>
+  <% end %>
+</ul>
+
