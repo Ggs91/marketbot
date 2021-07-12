@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 2021_07_12_124016) do
     t.index ["question_id"], name: "index_answers_on_question_id"
   end
 
-  create_table "chat_rooms", force: :cascade do |t|
+  create_table "chatrooms", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -39,11 +39,11 @@ ActiveRecord::Schema.define(version: 2021_07_12_124016) do
   end
 
   create_table "messages", force: :cascade do |t|
-    t.bigint "chat_room_id"
+    t.bigint "chatroom_id"
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["chat_room_id"], name: "index_messages_on_chat_room_id"
+    t.index ["chatroom_id"], name: "index_messages_on_chatroom_id"
   end
 
   create_table "questionnaires", force: :cascade do |t|
@@ -66,7 +66,7 @@ ActiveRecord::Schema.define(version: 2021_07_12_124016) do
   add_foreign_key "answers", "completions"
   add_foreign_key "answers", "questions"
   add_foreign_key "completions", "questionnaires"
-  add_foreign_key "messages", "chat_rooms"
+  add_foreign_key "messages", "chatrooms"
   add_foreign_key "questions", "messages", column: "messages_id"
   add_foreign_key "questions", "questionnaires"
 end
