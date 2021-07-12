@@ -6,7 +6,7 @@
 <ul>
   <% @chatrooms.each do |chatroom| %>
   <li>
-    <%= link_to "Continue survey in #{chatroom.name}", questionnaire_path(chatroom.id) %>
+    <%= link_to "Continue survey in #{chatroom.name}", chatroom_path(chatroom.id) %>
   </li>
   <% end %>
 </ul>
