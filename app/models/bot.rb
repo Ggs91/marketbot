@@ -21,10 +21,4 @@ class Bot < ApplicationRecord
   def send_introduction_message(questionnaire_presentation)
     self.send_message(questionnaire_presentation, 'introduction')
   end
-
-  private
-
-  def introduction_message
-
-  end
 end
