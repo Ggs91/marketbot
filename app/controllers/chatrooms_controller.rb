@@ -11,12 +11,7 @@ class ChatroomsController < ApplicationController
   end
 
   def create
-    @chatroom = Chatroom.new(
-      questionnaire: Questionnaire.all.sample,
-      bot: Bot.new,
-      user: current_user
-    )
-
+    @chatroom = Chatroom.new(chatroom_params)
     if @chatroom.save
       redirect_to @chatroom
     else
@@ -29,5 +24,13 @@ class ChatroomsController < ApplicationController
 
   def set_chatroom
     @chatroom = Chatroom.find(params[:id])
+  end
+
+  def chatroom_params
+    {
+      questionnaire: Questionnaire.all.sample,
+      bot: Bot.new,
+      user: current_user
+    }
   end
 end
