@@ -21,7 +21,8 @@ class QuestionnairesController < ApplicationController
     if @questionnaire.save
       redirect_to @questionnaire, notice: 'Questionnaire was successfully created.'
     else
-      render :new, status: :unprocessable_entity
+      flash.now[:notice] = "Your questionnaire couldn't be created"
+      render :new
     end
   end
 
@@ -29,7 +30,8 @@ class QuestionnairesController < ApplicationController
     if @questionnaire.update(questionnaire_params)
       redirect_to @questionnaire, notice: 'Questionnaire was successfully updated.'
     else
-      render :edit, status: :unprocessable_entity
+      flash.now[:notice] = "Your questionnaire couldn't be edited"
+      render :edit
     end
   end
 
