@@ -18,7 +18,7 @@ class ChatroomsController < ApplicationController
     )
 
     if chatroom.save
-      redirect_to @chatroom
+      redirect_to chatroom
     else
       render :new, status: :unprocessable_entity
     end
