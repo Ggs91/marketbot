@@ -1,12 +1,14 @@
 require 'activerecord-reset-pk-sequence'
 
 User.destroy_all
+Chatroom.destroy_all
 Bot.destroy_all
 Answer.destroy_all
 Completion.destroy_all
 Question.destroy_all
 Questionnaire.destroy_all
 
+Chatroom.reset_pk_sequence
 User.reset_pk_sequence
 Bot.reset_pk_sequence
 Answer.reset_pk_sequence
