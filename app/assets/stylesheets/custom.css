@@ -1,3 +1,17 @@
- .hidden {
-   display: none;
- }
+.hidden {
+  display: none;
+}
+
+.message {
+  border-radius: 17px;
+  max-width: 60%;
+  padding: .5rem .75rem;
+}
+
+.bot-message {
+  background-color: #EBEBEB;
+}
+
+.user-message {
+  background-color: #ABBAEA;
+}
