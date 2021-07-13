@@ -1,3 +1,7 @@
 <h1> <%= @chatroom.name %> </h1>
-<h1> Creator: <%= @chatroom.user.id %> </h1>
-<h1> current_user <%= current_user.id %> </h1>
+
+<% @chatroom.messages.each do |message| %>
+  <%= message.sender %>
+  <%= message.content %>
+  <br>
+<% end %>
