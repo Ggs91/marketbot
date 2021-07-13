@@ -13,7 +13,7 @@ class ChatroomsController < ApplicationController
   def create
     chatroom = Chatroom.new(
       questionnaire: Questionnaire.all.sample,
-      # bot: Bot.new,
+      bot: Bot.new,
       user: @current_user
     )
 

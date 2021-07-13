@@ -1,9 +1,3 @@
-<% flash.each do |type, msg| %>
-  <div>
-    <%= msg %>
-  </div>
-<% end %>
-
 <%= link_to 'Start a survey', chatrooms_path, method: :post %>
 <h5>Or</h5>
 <%= link_to 'Create a questionnaire', new_questionnaire_path %>
