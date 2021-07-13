@@ -11,13 +11,13 @@ class ChatroomsController < ApplicationController
   end
 
   def create
-    @chatroom = Chatroom.new(
+    chatroom = Chatroom.new(
       questionnaire: Questionnaire.all.sample,
       bot: Bot.create,
       user: @current_user
     )
 
-    if @chatroom.save
+    if chatroom.save
       redirect_to @chatroom
     else
       render :new, status: :unprocessable_entity
