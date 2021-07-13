@@ -6,7 +6,7 @@ module SessionsHelper
   private
 
   def find_or_create_user
-    if session[:user_id]
+    if User.exists?(id: session[:user_id])
       User.find_by(id: session[:user_id])
     else
       user = User.create
