@@ -13,14 +13,14 @@ class ChatroomsController < ApplicationController
   def create
     chatroom = Chatroom.new(
       questionnaire: Questionnaire.all.sample,
-      bot: Bot.create,
+      # bot: Bot.new,
       user: @current_user
     )
 
     if chatroom.save
       redirect_to chatroom
     else
-      render :new, status: :unprocessable_entity
+      redirect_to root_path, notice: "Chatroom couldn't be created"
     end
   end
 
