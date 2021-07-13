@@ -14,7 +14,7 @@ class ChatroomsController < ApplicationController
     chatroom = Chatroom.new(
       questionnaire: Questionnaire.all.sample,
       bot: Bot.new,
-      user: @current_user
+      user: current_user
     )
 
     if chatroom.save
@@ -28,14 +28,5 @@ class ChatroomsController < ApplicationController
 
   def set_chatroom
     @chatroom = Chatroom.find(params[:id])
-  end
-
-  def find_or_create_user
-    if session[:user_id]
-      @current_user = current_user
-    else
-      @current_user = User.create
-      session[:user_id] = @current_user.id
-    end
   end
 end
