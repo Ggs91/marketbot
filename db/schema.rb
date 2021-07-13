@@ -56,12 +56,8 @@ ActiveRecord::Schema.define(version: 2021_07_13_112816) do
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "bot_id"
-    t.bigint "user_id"
-    t.index ["bot_id"], name: "index_messages_on_bot_id"
     t.index ["chatroom_id"], name: "index_messages_on_chatroom_id"
     t.index ["sender_type", "sender_id"], name: "index_messages_on_sender_type_and_sender_id"
-    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "questionnaires", force: :cascade do |t|
@@ -92,9 +88,7 @@ ActiveRecord::Schema.define(version: 2021_07_13_112816) do
   add_foreign_key "chatrooms", "questionnaires"
   add_foreign_key "chatrooms", "users"
   add_foreign_key "completions", "questionnaires"
-  add_foreign_key "messages", "bots"
   add_foreign_key "messages", "chatrooms"
-  add_foreign_key "messages", "users"
   add_foreign_key "questions", "messages", column: "messages_id"
   add_foreign_key "questions", "questionnaires"
 end
