@@ -13,6 +13,6 @@ class Chatroom < ApplicationRecord
   end
 
   def send_bot_introduction_message
-    self.bot.send_introduction_message
+    self.bot.send_introduction_message(self.questionnaire.presentation)
   end
 end
