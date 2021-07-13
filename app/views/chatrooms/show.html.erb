@@ -1,7 +1,6 @@
 <h1> <%= @chatroom.name %> </h1>
 
 <% @chatroom.messages.each do |message| %>
-  <%= message.sender %>
-  <%= message.content %>
+  <%= render 'messages/message', message: message %>
   <br>
 <% end %>
