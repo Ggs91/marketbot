@@ -1,8 +1,18 @@
 require 'activerecord-reset-pk-sequence'
 
+User.destroy_all
+Bot.destroy_all
 Answer.destroy_all
+Completion.destroy_all
 Question.destroy_all
 Questionnaire.destroy_all
+
+User.reset_pk_sequence
+Bot.reset_pk_sequence
+Answer.reset_pk_sequence
+Completion.reset_pk_sequence
+Question.reset_pk_sequence
+Questionnaire.reset_pk_sequence
 
 
 # Questionnaire 1
