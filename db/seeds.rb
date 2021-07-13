@@ -6,7 +6,6 @@ Questionnaire.destroy_all
 
 
 # Questionnaire 1
-
 questionnaire_1 = Questionnaire.create!(
   presentation: 'We would like to ask you a few questions about your last shopping session'
 )
@@ -42,7 +41,7 @@ q3.answers.create!
 
 # Questionnaire 2
 questionnaire_2 = Questionnaire.create!(
-  presentation: 'We would like to ask you a few questions your shopping habits'
+  presentation: 'We would like to ask you a few questions about your shopping habits'
 )
 
 q4 = questionnaire_2.questions.create!(
