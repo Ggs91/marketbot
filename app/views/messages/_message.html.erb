@@ -1,0 +1,10 @@
+<div class="message <%=message.sender_type%>-message">
+  <% case message.message_type %>
+  <% when 'introduction' %>
+    <%= render 'messages/types/introduction', message: message %>
+  <% when 'question' %>
+    <%= render 'messages/types/question', message: message %>
+  <% when 'answer' %>
+    <%= render 'messages/types/answer', message: message %>
+  <% end %>
+</div>

@@ -1,0 +1,8 @@
+<h1>Hello and welcome 👋 !</h1>
+
+<P>This demo is a very short survey made for testing the MarketBot chat experience.</P>
+
+
+<P><%= message.content %></P>
+
+<%= button_to "Start", questionnaire_completions_path(message.chatroom.questionnaire) %>

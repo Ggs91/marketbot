@@ -4,6 +4,7 @@ class CreateMessages < ActiveRecord::Migration[5.2]
       t.references :chatroom, foreign_key: true, index: true
       t.references :sender, polymorphic: true
       t.text :content
+      t.integer :message_type
 
       t.timestamps
     end

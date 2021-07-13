@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 2021_07_13_112816) do
     t.string "sender_type"
     t.bigint "sender_id"
     t.text "content"
+    t.integer "message_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["chatroom_id"], name: "index_messages_on_chatroom_id"
@@ -62,6 +63,7 @@ ActiveRecord::Schema.define(version: 2021_07_13_112816) do
 
   create_table "questionnaires", force: :cascade do |t|
     t.string "name"
+    t.string "presentation"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
