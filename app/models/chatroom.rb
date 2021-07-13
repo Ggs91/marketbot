@@ -4,11 +4,15 @@ class Chatroom < ApplicationRecord
   belongs_to :bot
   belongs_to :user
 
-  after_create :set_name
+  after_create :set_name, :send_bot_introduction_message
 
   private
 
   def set_name
     self.update(name: "Chatroom ##{self.id}")
+  end
+
+  def send_bot_introduction_message
+    self.bot.send_introduction_message
   end
 end
