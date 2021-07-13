@@ -49,6 +49,7 @@ class QuestionnairesController < ApplicationController
   def questionnaire_params
     params.require(:questionnaire).permit(
       :name,
+      :presentation,
       questions_attributes: [
         :_destroy,
         :id,
