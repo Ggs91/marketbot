@@ -11,16 +11,17 @@ class ChatroomsController < ApplicationController
   end
 
   def create
-    chatroom = Chatroom.new(
+    @chatroom = Chatroom.new(
       questionnaire: Questionnaire.all.sample,
       bot: Bot.new,
       user: current_user
     )
 
-    if chatroom.save
-      redirect_to chatroom
+    if @chatroom.save
+      redirect_to @chatroom
     else
-      redirect_to root_path, notice: "Chatroom couldn't be created"
+      flash.now[:warning] = "Chatroom couldn't be created"
+      render :index
     end
   end
 
