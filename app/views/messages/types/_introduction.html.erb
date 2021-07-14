@@ -5,4 +5,4 @@
 
 <P><%= message.content %></P>
 
-<%= button_to "Start", questionnaire_completions_path(message.chatroom.questionnaire) %>
+<%= button_to "Start", questionnaire_completions_path(message.chatroom.questionnaire, chatroom_id: message.chatroom) %>
