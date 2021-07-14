@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_14_124447) do
+ActiveRecord::Schema.define(version: 2021_07_14_180542) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,7 +57,9 @@ ActiveRecord::Schema.define(version: 2021_07_14_124447) do
     t.integer "message_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "question_id"
     t.index ["chatroom_id"], name: "index_messages_on_chatroom_id"
+    t.index ["question_id"], name: "index_messages_on_question_id"
     t.index ["sender_type", "sender_id"], name: "index_messages_on_sender_type_and_sender_id"
   end
 
@@ -71,12 +73,10 @@ ActiveRecord::Schema.define(version: 2021_07_14_124447) do
 
   create_table "questions", force: :cascade do |t|
     t.bigint "questionnaire_id"
-    t.bigint "messages_id"
     t.string "name"
     t.integer "question_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["messages_id"], name: "index_questions_on_messages_id"
     t.index ["questionnaire_id"], name: "index_questions_on_questionnaire_id"
   end
 
@@ -92,6 +92,6 @@ ActiveRecord::Schema.define(version: 2021_07_14_124447) do
   add_foreign_key "chatrooms", "users"
   add_foreign_key "completions", "questionnaires"
   add_foreign_key "messages", "chatrooms"
-  add_foreign_key "questions", "messages", column: "messages_id"
+  add_foreign_key "messages", "questions"
   add_foreign_key "questions", "questionnaires"
 end
