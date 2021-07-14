@@ -1,12 +1,12 @@
 <div class="message <%=message.sender_type%>-message">
   <% case message.message_type %>
   <% when 'introduction' %>
-    <%= render 'messages/types/introduction', message: message %>
+    <%= render 'messages/types/introduction', message: message, chatroom: chatroom, bot: bot %>
   <% when 'question' %>
-    <%= render 'messages/types/question', message: message %>
+    <%= render 'messages/types/question', message: message, chatroom: chatroom, bot: bot %>
   <% when 'answer' %>
-    <%= render 'messages/types/answer', message: message %>
+    <%= render 'messages/types/answer', message: message, chatroom: chatroom, bot: bot %>
   <% when 'reply' %>
-    <%= render 'messages/types/reply', message: message %>
+    <%= render 'messages/types/reply', message: message, chatroom: chatroom, bot: bot %>
   <% end %>
 </div>
