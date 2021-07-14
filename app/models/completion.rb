@@ -9,7 +9,7 @@ class Completion < ApplicationRecord
     @current_question || 1
   end
 
-  def final_question
-    self.questionnaire.questions_count
+  def has_one_last_question_to_answer?
+    self.questionnaire.questions_count == @current_question
   end
 end
