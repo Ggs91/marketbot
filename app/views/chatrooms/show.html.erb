@@ -1,6 +1,6 @@
 <h1> <%= @chatroom.name %> </h1>
 
 <% @chatroom.messages.each do |message| %>
-  <%= render 'messages/message', message: message %>
+  <%= render 'messages/message', message: message, chatroom: @chatroom, bot: @chatroom.bot %>
   <br>
 <% end %>
