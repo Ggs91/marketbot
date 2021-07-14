@@ -2,6 +2,7 @@ class Questionnaires::CompletionsController < ApplicationController
 
   before_action :set_questionnaire, only: [:update]
   before_action :set_chatroom, only: [:create, :update]
+  before_action :set_bot, only: [:create, :update]
 
   def create
     user_reply
@@ -9,9 +10,12 @@ class Questionnaires::CompletionsController < ApplicationController
     @completion = Completion.new(completion_params)
     if @completion.save
       render 'chatrooms/show'
-      # session[:completion_id] = @completion.id
+      @bot.listen({
+        completion: @completion
+      })
     else
-
+      flash.now[:warning] = "Couldn't start the survey, please try again"
+      render 'chatrooms/show'
     end
   end
 
@@ -36,7 +40,11 @@ class Questionnaires::CompletionsController < ApplicationController
     @chatroom = Chatroom.find(params[:chatroom_id])
   end
 
+  def set_bot
+    @bot = Bot.find(params[:bot_id])
+  end
+
   def user_reply
-    current_user.send_message(@chatroom, 'Start')
+    current_user.send_message(@chatroom, 'Start ⚡️')
   end
 end
