@@ -1,5 +1,5 @@
 class Question < ApplicationRecord
-  belongs_to :questionnaire
+  belongs_to :questionnaire, counter_cache: true
   belongs_to :message, optional: true
   has_many :answers, dependent: :destroy
   accepts_nested_attributes_for :answers, allow_destroy: true

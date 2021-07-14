@@ -8,9 +8,16 @@ class Questionnaires::CompletionsController < ApplicationController
     end
   end
 
+  def update
+
+  end
+
   private
 
   def completion_params
-    params.permit(:questionnaire_id)
+    params.permit(
+      :questionnaire_id,
+      answers_attributes: [:id, :name]
+    )
   end
 end
