@@ -9,7 +9,6 @@
 </div>
 
 <div class="message <%= message.sender_type %>-message">
-  <% message.question.answers.each do |answer| %>
-    <%= answer.name %>
-  <% end %>
+  <%= render 'questions/question', question: message.question, questionnaire: questionnaire, completion: completion, chatroom: chatroom %>
 </div>
+
