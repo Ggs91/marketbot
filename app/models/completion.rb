@@ -2,7 +2,6 @@ class Completion < ApplicationRecord
   belongs_to :questionnaire
   has_many :answers
   belongs_to :chatroom
-  accepts_nested_attributes_for :answers, allow_destroy: true
 
   attr_writer :current_question
 
