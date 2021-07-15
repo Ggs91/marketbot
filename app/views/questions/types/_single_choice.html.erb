@@ -1,9 +1,16 @@
-  <%= form_with(model: [questionnaire, completion]) do |form| %>
-    <%= hidden_field_tag :chatroom_id, chatroom.id %>
+<%= form_with(model: [questionnaire, completion]) do |form| %>
+  <%= hidden_field_tag :chatroom_id, chatroom.id %>
 
-    <% question.answers.each do |answer| %>
-      <%= answer.name %>
+
+  <% question.answers.each do |answer| %>
+    <%= form.fields_for answer do |answer_fields| %>
+      <%=answer.name %>: <%= answer_fields.radio_button :name, answer.id %>
+      <br>
     <% end %>
-  <br>
-    <%= form.submit "Send" %>
   <% end %>
+
+
+  <br>
+  <%= form.submit "Send" %>
+<% end %>
+
