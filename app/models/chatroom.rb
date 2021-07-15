@@ -1,6 +1,7 @@
 class Chatroom < ApplicationRecord
   has_many :messages, dependent: :destroy
   belongs_to :questionnaire
+  has_one :completion
   belongs_to :bot
   belongs_to :user
 
