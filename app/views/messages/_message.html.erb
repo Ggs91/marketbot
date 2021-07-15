@@ -2,7 +2,7 @@
   <% when 'introduction' %>
     <%= render 'messages/types/introduction', message: message, chatroom: chatroom, bot: bot, questionnaire: questionnaire %>
   <% when 'question' %>
-    <%= render 'messages/types/question', message: message %>
+    <%= render 'messages/types/question', message: message, completion: @completion, chatroom: chatroom, questionnaire: @questionnaire %>
   <% when 'answer' %>
     <%= render 'messages/types/answer' %>
   <% when 'reply' %>
