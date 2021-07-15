@@ -4,7 +4,7 @@
 
   <% question.answers.each do |answer| %>
     <%= form.fields_for answer do |answer_fields| %>
-      <%=answer.name %>: <%= answer_fields.radio_button :name, answer.id %>
+      <%= answer.name %>: <%= answer_fields.radio_button :id, answer.id %>
       <br>
     <% end %>
   <% end %>
