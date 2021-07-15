@@ -6,9 +6,7 @@ class Questionnaires::CompletionsController < ApplicationController
 
   def create
     user_reply
-
     @completion = Completion.new(completion_params)
-
     respond_to do |format|
       if @completion.save
         @bot.start_survey(@questionnaire)
@@ -33,6 +31,7 @@ class Questionnaires::CompletionsController < ApplicationController
   def completion_params
     params.permit(
       :questionnaire_id,
+      :chatroom_id,
       answers_attributes: [:id, :name]
     )
   end
