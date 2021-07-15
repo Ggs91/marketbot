@@ -2,7 +2,8 @@ class Questionnaires::CompletionsController < ApplicationController
 
   before_action :set_questionnaire, only: [:create, :update]
   before_action :set_chatroom, only: [:create, :update]
-  before_action :set_bot, only: [:create, :update]
+  before_action :set_bot, only: [:create]
+  before_action :set_completion, only: [:update]
 
   def create
     user_reply
@@ -23,7 +24,16 @@ class Questionnaires::CompletionsController < ApplicationController
   end
 
   def update
-
+    if @completion.update(completion_params)
+      format.html { render 'chatrooms/show' && return }
+      format.js { render 'chatrooms/show' }
+    else
+      format.html {
+        flash.now[:warning] = "Couldn't save your answers, please try again"
+        render 'chatrooms/show'
+      }
+      format.js {}
+    end
   end
 
   private
@@ -32,8 +42,12 @@ class Questionnaires::CompletionsController < ApplicationController
     params.permit(
       :questionnaire_id,
       :chatroom_id,
-      answers_attributes: [:id, :name]
+      answer_ids: []
     )
+  end
+
+  def set_completion
+    @completion = Completion.find(params[:id])
   end
 
   def set_questionnaire
