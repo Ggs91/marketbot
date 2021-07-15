@@ -2,7 +2,10 @@
 <h5>Or</h5>
 <%= link_to 'Create a questionnaire', new_questionnaire_path %>
 
-<br>
+
+<%
+=begin%>
+ <br>
 
 <% if current_user && current_user.chatrooms.any? %>
   <ul>
@@ -13,3 +16,5 @@
     <% end %>
   </ul>
 <% end %>
+<%
+=end%>
