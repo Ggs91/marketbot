@@ -4,6 +4,6 @@ Rails.application.routes.draw do
     resources :messages, only: [:create], module: :chatrooms
   end
   resources :questionnaires do
-    resources :completions, only: [:create, :show, :destroy], module: :questionnaires
+    resources :completions, only: [:create, :show, :destroy, :update], module: :questionnaires
   end
 end
