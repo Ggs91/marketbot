@@ -1,13 +1,11 @@
 <h1> <%= @chatroom.name %> </h1>
-
 <div id="messages">
   <% @chatroom.messages.each do |message| %>
       <%= render 'messages/message',
         message: message,
         chatroom: @chatroom,
         bot: @chatroom.bot,
-        questionnaire: @chatroom.questionnaire,
-        completion: @chatroom.questionnaire.completion
+        questionnaire: @chatroom.questionnaire
       %>
   <% end %>
 </div>
