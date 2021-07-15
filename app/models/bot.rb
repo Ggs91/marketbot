@@ -13,7 +13,7 @@ class Bot < ApplicationRecord
 
   def process_completion(completion)
     if completion.has_one_last_question_to_answer?
-      self.send_message('One last question', 'question', completion.)
+      # self.send_message('One last question', 'question', completion.)
       completion.current_question = nil
     end
   end
@@ -29,5 +29,9 @@ class Bot < ApplicationRecord
 
   def send_introduction_message(questionnaire_presentation)
     self.send_message(questionnaire_presentation, 'introduction')
+  end
+
+  def start_survey(questionnaire)
+    send_message('👌', 'question', questionnaire.questions.first)
   end
 end
