@@ -42,8 +42,16 @@ class Questionnaires::CompletionsController < ApplicationController
     params.permit(
       :questionnaire_id,
       :chatroom_id,
-      answer_ids: []
+      answer_ids: answer_ids
     )
+  end
+
+  def answer_ids
+    if params[:completion]
+      [params[:completion][:answer][:id].to_i]
+    else
+      []
+    end
   end
 
   def set_completion
