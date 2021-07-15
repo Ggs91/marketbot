@@ -1,0 +1,9 @@
+  <%= form_with(model: [questionnaire, completion]) do |form| %>
+    <%= hidden_field_tag :chatroom_id, chatroom.id %>
+
+    <% question.answers.each do |answer| %>
+      <%= answer.name %>
+    <% end %>
+  <br>
+    <%= form.submit "Send" %>
+  <% end %>
