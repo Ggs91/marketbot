@@ -1,6 +1,6 @@
 class Questionnaires::CompletionsController < ApplicationController
 
-  before_action :set_questionnaire, only: [:update]
+  before_action :set_questionnaire, only: [:create, :update]
   before_action :set_chatroom, only: [:create, :update]
   before_action :set_bot, only: [:create, :update]
 
@@ -8,14 +8,19 @@ class Questionnaires::CompletionsController < ApplicationController
     user_reply
 
     @completion = Completion.new(completion_params)
-    if @completion.save
-      render 'chatrooms/show'
-      @bot.listen({
-        completion: @completion
-      })
-    else
-      flash.now[:warning] = "Couldn't start the survey, please try again"
-      render 'chatrooms/show'
+
+    respond_to do |format|
+      if @completion.save
+        @bot.start_survey(@questionnaire)
+        format.html { render 'chatrooms/show' && return }
+        format.js { render 'chatrooms/show' }
+      else
+        format.html {
+          flash.now[:warning] = "Couldn't start the survey, please try again"
+          render 'chatrooms/show'
+        }
+        format.js {}
+      end
     end
   end
 
