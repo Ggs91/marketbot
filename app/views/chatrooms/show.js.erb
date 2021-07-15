@@ -1,0 +1,1 @@
+document.getElementById("messages").insertAdjacentHTML("beforeend", "<%= j render 'messages/message', message: @chatroom.messages.last, chatroom: @chatroom, bot: @chatroom.bot %>")

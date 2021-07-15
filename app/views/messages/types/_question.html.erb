@@ -1,0 +1,15 @@
+<% if message.content %>
+  <div class="message <%= message.sender_type %>-message">
+    <%= message.content %>
+  </div>
+<% end %>
+
+<div class="message <%= message.sender_type %>-message">
+  <%= message.question.name %>
+</div>
+
+<div class="message <%= message.sender_type %>-message">
+  <% message.question.answers.each do |answer| %>
+    <%= answer.name %>
+  <% end %>
+</div>

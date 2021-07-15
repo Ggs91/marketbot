@@ -1,6 +1,5 @@
 <div data-controller='start-survey'>
   <template data-start-survey-target='template_message'>
-  <br>
     <div class='message user-message'>
       <p> Start ⚡️</p>
     </div>
@@ -13,7 +12,7 @@
   </div>
 
   <%= button_to "Start", questionnaire_completions_path(
-    questionnaire_id: chatroom.questionnaire,
+    questionnaire_id: questionnaire,
                           chatroom_id: chatroom,
                           bot_id: bot
                         ),

@@ -1,10 +1,10 @@
   <% case message.message_type %>
   <% when 'introduction' %>
-    <%= render 'messages/types/introduction', message: message, chatroom: chatroom, bot: bot %>
+    <%= render 'messages/types/introduction', message: message, chatroom: chatroom, bot: bot, questionnaire: questionnaire %>
   <% when 'question' %>
-    <%= render 'messages/types/question', message: message, chatroom: chatroom, bot: bot %>
+    <%= render 'messages/types/question', message: message %>
   <% when 'answer' %>
-    <%= render 'messages/types/answer', message: message, chatroom: chatroom, bot: bot %>
+    <%= render 'messages/types/answer' %>
   <% when 'reply' %>
-    <%= render 'messages/types/reply', message: message, chatroom: chatroom, bot: bot %>
+    <%= render 'messages/types/reply', message: message %>
   <% end %>

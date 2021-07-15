@@ -2,7 +2,12 @@
 
 <div id="messages">
   <% @chatroom.messages.each do |message| %>
-      <%= render 'messages/message', message: message, chatroom: @chatroom, bot: @chatroom.bot %>
-    <br>
+      <%= render 'messages/message',
+        message: message,
+        chatroom: @chatroom,
+        bot: @chatroom.bot,
+        questionnaire: @chatroom.questionnaire,
+        completion: @chatroom.questionnaire.completion
+      %>
   <% end %>
 </div>
