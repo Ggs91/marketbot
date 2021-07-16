@@ -43,7 +43,7 @@ q1.answers.create!([
   {name: '0'},
   {name: '1 to 3'},
   {name: '4 or more'}
-  ])
+])
 
 q2.answers.create!([
   {name: 'Shoes'},
@@ -84,7 +84,7 @@ q5.answers.create!([
   {name: 'On the internet'},
   {name: 'At the mall'},
   {name: 'Anywhere'}
-  ])
+])
 
 q6.answers.create!
 
