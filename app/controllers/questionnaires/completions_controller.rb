@@ -2,7 +2,7 @@ class Questionnaires::CompletionsController < ApplicationController
 
   before_action :set_questionnaire, only: [:create, :update]
   before_action :set_chatroom, only: [:create, :update]
-  before_action :set_bot, only: [:create]
+  before_action :set_bot, only: [:create, :update]
   before_action :set_completion, only: [:update]
 
   def create
@@ -10,7 +10,7 @@ class Questionnaires::CompletionsController < ApplicationController
     @completion = Completion.new(completion_params)
     respond_to do |format|
       if @completion.save
-        @bot.start_survey(@questionnaire)
+        @bot.process_survey(@questionnaire, @completion)
         format.html { render 'chatrooms/show' && return }
         format.js { render 'chatrooms/show' }
       else
@@ -26,6 +26,8 @@ class Questionnaires::CompletionsController < ApplicationController
   def update
     respond_to do |format|
       if @completion.update(completion_params.merge(answer_ids))
+        @completion.current_question += 1
+        @bot.process_survey(@questionnaire, @completion)
         format.html { render 'chatrooms/show' && return }
         format.js { render 'chatrooms/show' }
       else
