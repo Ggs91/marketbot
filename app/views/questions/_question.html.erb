@@ -1,8 +1,8 @@
 <% case question.question_type %>
 <% when 'single_choice' %>
-  <%= render 'questions/types/single_choice', question: question, questionnaire: questionnaire, completion: completion, chatroom: chatroom %>
+  <%= render 'questions/types/single_choice', question: question, questionnaire: questionnaire, completion: completion, chatroom: chatroom, bot: bot %>
 <% when 'multiple_choice' %>
-  <%= render 'questions/types/multiple_choice', question: question, questionnaire: questionnaire, completion: completion, chatroom: chatroom %>
+  <%= render 'questions/types/multiple_choice', question: question, questionnaire: questionnaire, completion: completion, chatroom: chatroom, bot: bot %>
 <% when 'long_answer' %>
-  <%= render 'questions/types/long_answer', question: question, questionnaire: questionnaire, completion: completion, chatroom: chatroom %>
+  <%= render 'questions/types/long_answer', question: question, questionnaire: questionnaire, completion: completion, chatroom: chatroom, bot: bot %>
 <% end %>

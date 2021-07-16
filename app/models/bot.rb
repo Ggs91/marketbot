@@ -31,7 +31,11 @@ class Bot < ApplicationRecord
     self.send_message(questionnaire_presentation, 'introduction')
   end
 
-  def start_survey(questionnaire)
-    send_message('👌', 'question', questionnaire.questions.first)
+  def process_survey(questionnaire, completion)
+    if completion.current_question == 1
+      send_message('👌', 'question', questionnaire.questions.first)
+    else
+      send_message(nil, 'question', questionnaire.questions[completion.current_question])
+    end
   end
 end
