@@ -24,15 +24,17 @@ class Questionnaires::CompletionsController < ApplicationController
   end
 
   def update
-    if @completion.update(completion_params.merge(answer_ids))
-      format.html { render 'chatrooms/show' && return }
-      format.js { render 'chatrooms/show' }
-    else
-      format.html {
-        flash.now[:warning] = "Couldn't save your answers, please try again"
-        render 'chatrooms/show'
-      }
-      format.js {}
+    respond_to do |format|
+      if @completion.update(completion_params.merge(answer_ids))
+        format.html { render 'chatrooms/show' && return }
+        format.js { render 'chatrooms/show' }
+      else
+        format.html {
+          flash.now[:warning] = "Couldn't save your answers, please try again"
+          render 'chatrooms/show'
+        }
+        format.js {}
+      end
     end
   end
 
@@ -47,7 +49,7 @@ class Questionnaires::CompletionsController < ApplicationController
 
   def answer_ids
     {
-      answer_ids: [params[:completion][:answer][:id].to_i]
+      answer_ids: [params[:completion][:answer][:id]]
     }
   end
 
