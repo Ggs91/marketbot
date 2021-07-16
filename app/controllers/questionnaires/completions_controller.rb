@@ -26,7 +26,7 @@ class Questionnaires::CompletionsController < ApplicationController
   def update
     respond_to do |format|
       if @completion.update(completion_params.merge(answer_ids))
-        @completion.current_question += 1
+        @completion.current_question_index += 1
         @bot.process_survey(@questionnaire, @completion)
         format.html { render 'chatrooms/show' && return }
         format.js { render 'chatrooms/show' }
