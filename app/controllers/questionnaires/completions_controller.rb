@@ -24,7 +24,7 @@ class Questionnaires::CompletionsController < ApplicationController
   end
 
   def update
-    if @completion.update(completion_params)
+    if @completion.update(completion_params.merge(answer_ids))
       format.html { render 'chatrooms/show' && return }
       format.js { render 'chatrooms/show' }
     else
@@ -42,16 +42,13 @@ class Questionnaires::CompletionsController < ApplicationController
     params.permit(
       :questionnaire_id,
       :chatroom_id,
-      answer_ids: answer_ids
     )
   end
 
   def answer_ids
-    if params[:completion]
-      [params[:completion][:answer][:id].to_i]
-    else
-      []
-    end
+    {
+      answer_ids: [params[:completion][:answer][:id].to_i]
+    }
   end
 
   def set_completion
