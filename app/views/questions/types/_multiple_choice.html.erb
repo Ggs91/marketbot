@@ -1,0 +1,9 @@
+<%= form_with(model: [questionnaire, completion]) do |form| %>
+  <%= hidden_field_tag :chatroom_id, chatroom.id %>
+  <%= hidden_field_tag :bot_id, bot.id %>
+
+  <%= form.collection_select :answer, question.answers, :id, :name, {}, { multiple: true } %>
+
+  <br>
+  <%= render 'shared/disappearing_submit_button', name: 'Send', form: form %>
+<% end %>
