@@ -10,19 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_15_180345) do
+ActiveRecord::Schema.define(version: 2021_07_18_150011) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "answers", force: :cascade do |t|
     t.bigint "question_id"
-    t.bigint "completion_id"
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["completion_id"], name: "index_answers_on_completion_id"
     t.index ["question_id"], name: "index_answers_on_question_id"
+  end
+
+  create_table "answers_reponses", id: false, force: :cascade do |t|
+    t.bigint "answer_id"
+    t.bigint "response_id"
+    t.index ["answer_id"], name: "index_answers_reponses_on_answer_id"
+    t.index ["response_id"], name: "index_answers_reponses_on_response_id"
   end
 
   create_table "bots", force: :cascade do |t|
@@ -82,12 +87,20 @@ ActiveRecord::Schema.define(version: 2021_07_15_180345) do
     t.index ["questionnaire_id"], name: "index_questions_on_questionnaire_id"
   end
 
+  create_table "responses", force: :cascade do |t|
+    t.bigint "question_id"
+    t.bigint "completion_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["completion_id"], name: "index_responses_on_completion_id"
+    t.index ["question_id"], name: "index_responses_on_question_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "answers", "completions"
   add_foreign_key "answers", "questions"
   add_foreign_key "chatrooms", "bots"
   add_foreign_key "chatrooms", "questionnaires"
@@ -97,4 +110,6 @@ ActiveRecord::Schema.define(version: 2021_07_15_180345) do
   add_foreign_key "messages", "chatrooms"
   add_foreign_key "messages", "questions"
   add_foreign_key "questions", "questionnaires"
+  add_foreign_key "responses", "completions"
+  add_foreign_key "responses", "questions"
 end

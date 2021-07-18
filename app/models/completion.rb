@@ -2,7 +2,7 @@ class Completion < ApplicationRecord
   attr_writer :current_question_index
 
   belongs_to :questionnaire
-  has_many :answers
+  has_many :responses
   belongs_to :chatroom
 
   def current_question_index
