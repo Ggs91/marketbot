@@ -25,7 +25,7 @@ class Questionnaires::CompletionsController < ApplicationController
 
   def update
     respond_to do |format|
-      if @completion.update(completion_params.merge(answer_ids))
+      if @completion.update(answer_ids)
         @completion.current_question_index += 1
         @bot.process_survey(@questionnaire, @completion)
         format.html { render 'chatrooms/show' && return }
@@ -50,9 +50,15 @@ class Questionnaires::CompletionsController < ApplicationController
   end
 
   def answer_ids
-    {
-      answer_ids: [params[:completion][:answer][:id]]
-    }
+    if params[:completion][:answer].is_a? Array
+      {
+        answer_ids: params[:completion][:answer]
+      }
+    else
+      {
+        answer_ids: [params[:completion][:answer][:id]]
+      }
+    end
   end
 
   def set_completion
@@ -75,3 +81,5 @@ class Questionnaires::CompletionsController < ApplicationController
     current_user.send_message(@chatroom, 'Start ⚡️')
   end
 end
+
+
